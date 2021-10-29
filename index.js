@@ -51,32 +51,33 @@ const Network = {
         }
 
         // Convert SSID to an array of bytes
-        let ssidBytes = Buffer.from(ssid);
+        let ssidByteArray = [];
+        let buffer = Buffer.from(ssid);
+        for (var i = 0; i < buffer.length; i++) {
+          ssidByteArray.push(buffer[i]);
+        }
 
         // Access point connection information
         let connectionInfo = {
           '802-11-wireless': {
-            'ssid': ssidBytes,
+            'ssid': ssidByteArray,
             'mode': 'ap',
-            //'band': 'bg',
-            //'hidden': false
           },
-          //'802-11-wireless-security': {
-          //  'key-mgmt': 'wpa-psk',
-          //  'psk': 'password',
-          //},
           'connection': {
             'id': ssid,
             'autoconnect': false,
             'type': '802-11-wireless',
-            //'inteface-name': 'wlan0',
           },
           'ipv4': {
             'method': 'manual',
-            'address-data': {
-              'address': '192.168.2.1',
-              'prefix': 24,
-            }
+            // Use addresses rather than address-data for backwards compat
+            'addresses': [
+              [
+                3232236033, // IP: 192.168.2.1 (encoded as integer)
+                24,         // Prefix: 24
+                3232236033  // Gateway: 192.168.2.1 (encoded as integer)
+              ] 
+            ]
           }
         };
 
