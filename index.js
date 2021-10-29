@@ -73,9 +73,9 @@ const Network = {
             // Use addresses rather than address-data for backwards compat
             'addresses': [
               [
-                3232236033, // IP: 192.168.2.1 (encoded as integer)
+                16951488, // IP: 192.168.2.1 (encoded as integer)
                 24,         // Prefix: 24
-                3232236033  // Gateway: 192.168.2.1 (encoded as integer)
+                16951488  // Gateway: 192.168.2.1 (encoded as integer)
               ] 
             ]
           }
